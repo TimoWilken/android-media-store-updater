@@ -3,8 +3,6 @@ package net.twilken.amsupd;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.function.Consumer;
 
 public class UpdaterMediaScannerClient implements MediaScannerConnection.MediaScannerConnectionClient {

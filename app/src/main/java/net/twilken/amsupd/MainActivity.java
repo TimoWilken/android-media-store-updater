@@ -23,7 +23,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     @NonNull
@@ -57,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateMediaStore() {
         ((TextView)this.findViewById(R.id.scrollingText)).setText("");
-        MediaScannerConnection connection = new MediaScannerConnection(this.getBaseContext(),
-                new UpdaterMediaScannerClient(this::appendText));
-        connection.connect();
+        ArrayList<String> files = new ArrayList<>(128), mimeTypes = new ArrayList<>(128);
         for (String imageDir : ((EditText)this.findViewById(R.id.scanDirs)).getText().toString().split("\n")) {
             for (File image : listFilesRecursively(new File(Environment.getExternalStorageDirectory(), imageDir))) {
                 String path = image.getAbsolutePath(), mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(
@@ -68,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
                     this.appendText(String.format("NOT SCANNING %s: unknown MIME type\n", path));
                 } else {
                     this.appendText(String.format("SCAN %s (%s)\n", path, mimeType));
-                    connection.scanFile(path, mimeType);
+                    files.add(path);
+                    mimeTypes.add(mimeType);
                 }
             }
         }
-        connection.disconnect();
+        MediaScannerConnection.scanFile(this.getBaseContext(), files.toArray(new String[0]),
+                mimeTypes.toArray(new String[0]), new UpdaterMediaScannerClient(this::appendText));
     }
 
     @Override
