@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Media Store Updater</string>
+    <string name="default_directories_caption">Directories to scan</string>
+    <string name="default_directories">DCIM/Camera\nPictures</string>
+    <string name="update_button_text">Update media store</string>
+    <string name="welcome_message">Click "Update media store" to start…</string>
+    <string name="scroll_to_top_hint">Scroll to top</string>
+    <string name="scroll_to_bottom_hint">Scroll to bottom</string>
 </resources>

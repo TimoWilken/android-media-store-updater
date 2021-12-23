@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:importantForAutofill="no"
     tools:context=".MainActivity">
 
     <ScrollView
@@ -18,19 +19,51 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/default_directories_caption"
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxBackgroundMode="outline">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/scanDirs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri|textMultiLine"
+                    android:singleLine="false"
+                    android:text="@string/default_directories"
+                    tools:ignore="TextContrastCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/runButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onClickRun"
-                android:text="Update media store" />
+                android:text="@string/update_button_text" />
 
             <TextView
                 android:id="@+id/scrollingText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:allowUndo="false"
+                android:text="@string/welcome_message"
                 android:textSize="8sp" />
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/scrollFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:contentDescription="@string/scroll_to_top_hint"
+        android:onClick="onClickScroll"
+        android:tooltipText="@string/scroll_to_top_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/stat_sys_upload" />
 </androidx.constraintlayout.widget.ConstraintLayout>

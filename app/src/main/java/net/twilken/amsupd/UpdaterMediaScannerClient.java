@@ -1,16 +1,11 @@
 package net.twilken.amsupd;
 
-import android.content.Context;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class UpdaterMediaScannerClient implements MediaScannerConnection.MediaScannerConnectionClient {
     private final Consumer<String> notifyProgress;
